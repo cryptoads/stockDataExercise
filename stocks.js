@@ -726,20 +726,19 @@ var averages = days.forEach(function (day) {
     avgclose += Number(stocks[day]['4. close']);
     avgvolume += Number(stocks[day]['5. volume']);
     count++;
-});
-
-var highandlow = days.forEach(function (day){
     if(stocks[day]['2. high'] > alltimehigh){
         alltimehigh = stocks[day]['2. high'];
     }else if (stocks[day]['3. low'] < alltimelow){
         alltimelow = stocks[day]['3. low'];
     }
-})
+});
+
+
 
 console.log('The average open was ' + (avgopen/count).toFixed(2));
 console.log('The average high was '+ (avghigh/count).toFixed(2));
 console.log('The average low was ' + (avglow/count).toFixed(2));
 console.log('The average close was ' + (avgclose/count).toFixed(2));
 console.log('The average voluem was '+ Math.floor(avgvolume/count));
-console.log('The all time high in given date range is '+ alltimehigh);
-console.log('The all time low in given date range is '+ alltimelow);
+console.log('The all time high in given date range is ' + alltimehigh);
+console.log('The all time low in given date range is '+ (alltimelow));
