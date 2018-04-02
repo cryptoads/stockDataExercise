@@ -701,7 +701,7 @@ var stocks = {
         }
     };
 
-
+para = document.getElementsByClassName("para")[0];
 
 var days = Object.keys(stocks);
 
@@ -719,7 +719,7 @@ var avgclose = 0;
 var avgvolume = 0;
 
 
-var averages = days.forEach(function (day) {
+days.forEach(function (day) {
     avgopen += Number(stocks[day]['1. open']);
     avghigh += Number(stocks[day]['2. high']);
     avglow += Number(stocks[day]['3. low']);
@@ -733,7 +733,13 @@ var averages = days.forEach(function (day) {
     }
 });
 
-
+para.innerHTML += "Open Price: " +(avgopen/count).toFixed(2) + '<br>';
+para.innerHTML += "High: " + (avghigh/count).toFixed(2) + '<br>';
+para.innerHTML += "Low: " + (avglow/count).toFixed(2) + '<br>';
+para.innerHTML += "Close: " + (avgclose/count).toFixed(2) + '<br>';
+para.innerHTML += "Volume: " + Math.floor(avgvolume/count) + '<br>';
+para.innerHTML += 'All time High: ' + alltimehigh + '<br>';
+para.innerHTML += 'All time High: ' + alltimelow +' <br>';
 
 console.log('The average open was ' + (avgopen/count).toFixed(2));
 console.log('The average high was '+ (avghigh/count).toFixed(2));
