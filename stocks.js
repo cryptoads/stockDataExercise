@@ -716,15 +716,10 @@ var avglow = 0;
 var avgclose = 0;
 var avgvolume = 0;
 var alldays = [];
-var daysobj = {};
 var close = 0;
 var closecolor = '';
-var open = 0;
 var opencolor = '';
 
-// days.map(function (day) {
-//   alldays.push(days);
-// });
 
 days.forEach(function (day) {
     avgopen += Number(stocks[day]['1. open']);
@@ -740,29 +735,39 @@ days.forEach(function (day) {
     }
 });
 
+
+days.forEach(function (day, key) {
+            alldays.push({"Day": days[key], 
+            "Open": stocks[day]["1. open"], 
+            "close": stocks[day]["4. close"] });
+  });
+
+
 function createDaily() {
     for(var i=99; i >= 0;i--){
+        // set colors background colors for bootstrap divs red or green on the open and close prices based on if the market opened 
+        // high/lower than the previous close or if the market closes higher/lower than the opening brint
         if (stocks[days[i]]['1. open'] > close){
-            var open = stocks[days[i]]['1. open'];
             var opencolor = 'bg-success';
         }else if (stocks[days[i]]['1. open'] < close) {
             var opencolor= 'bg-danger';
         }
-
         if (stocks[days[i]]['4. close'] > stocks[days[i]]['1. open']){
             var open = stocks[days[i]]['1. open'];
             var closecolor = 'bg-success';
         }else if (stocks[days[i]]['4. close'] < stocks[days[i]]['1. open']){
             var closecolor = 'bg-danger'
         }
+        // set close price during every lop
         close = stocks[days[i]]['4. close'];
-        allpara.innerHTML += "<div class='col-3 bg-secondary border'> <span class='bg-secondary text-warning'>Day: " + days[i] + '</span><br><span class='+opencolor+'> Open: ' + stocks[days[i]]['1. open'] + '</span><br><span class=' + closecolor +'> Close: ' + stocks[days[i]]['4. close'] + '</span><br> </div>';
+        // write html with bootstrap classes containing the day/open/close info, colored by the if/then above.
+        allpara.innerHTML += "<div class='col-3 bg-secondary border'> <span class='bg-secondary text-warning'>Day: " + 
+        days[i] + '</span><br><span class='+opencolor+'> Open: ' + stocks[days[i]]['1. open'] + '</span><br><span class=' + 
+        closecolor +'> Close: ' + stocks[days[i]]['4. close'] + '</span><br> </div>';
     }
-
 }
 
 createDaily();
-
 
 avgpara.innerHTML += "Open Price: " +(avgopen/count).toFixed(2) + '<br>';
 avgpara.innerHTML += "High: " + (avghigh/count).toFixed(2) + '<br>';
@@ -779,3 +784,5 @@ console.log('The average close was ' + (avgclose/count).toFixed(2));
 console.log('The average voluem was '+ Math.floor(avgvolume/count));
 console.log('The all time high in given date range is ' + alltimehigh);
 console.log('The all time low in given date range is '+ (alltimelow));
+console.log(alldays);
+
