@@ -717,6 +717,10 @@ var avgclose = 0;
 var avgvolume = 0;
 var alldays = [];
 var daysobj = {};
+var close = 0;
+var closecolor = '';
+var open = 0;
+var opencolor = '';
 
 // days.map(function (day) {
 //   alldays.push(days);
@@ -737,11 +741,22 @@ days.forEach(function (day) {
 });
 
 function createDaily() {
-    console.log(days.length)
-    for(var i=0; i<days.length;i++){
-        allpara.innerHTML += "Day: " + days[i] + '<br>';
-        allpara.innerHTML += 'Open: ' + stocks[days[i]]['1. open'] + '<br>';
-        allpara.innerHTML += 'Close: ' + stocks[days[i]]['4. close'] + '<br>';
+    for(var i=99; i >= 0;i--){
+        if (stocks[days[i]]['1. open'] > close){
+            var open = stocks[days[i]]['1. open'];
+            var opencolor = 'bg-success';
+        }else if (stocks[days[i]]['1. open'] < close) {
+            var opencolor= 'bg-danger';
+        }
+
+        if (stocks[days[i]]['4. close'] > stocks[days[i]]['1. open']){
+            var open = stocks[days[i]]['1. open'];
+            var closecolor = 'bg-success';
+        }else if (stocks[days[i]]['4. close'] < stocks[days[i]]['1. open']){
+            var closecolor = 'bg-danger'
+        }
+        close = stocks[days[i]]['4. close'];
+        allpara.innerHTML += "<div class='col-3 bg-secondary border'> <span class='bg-secondary text-warning'>Day: " + days[i] + '</span><br><span class='+opencolor+'> Open: ' + stocks[days[i]]['1. open'] + '</span><br><span class=' + closecolor +'> Close: ' + stocks[days[i]]['4. close'] + '</span><br> </div>';
     }
 
 }
