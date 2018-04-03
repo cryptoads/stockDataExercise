@@ -775,7 +775,7 @@ avgpara.innerHTML += "Low: " + (avglow/count).toFixed(2) + '<br>';
 avgpara.innerHTML += "Close: " + (avgclose/count).toFixed(2) + '<br>';
 avgpara.innerHTML += "Volume: " + Math.floor(avgvolume/count) + '<br>';
 avgpara.innerHTML += 'All time High: ' + alltimehigh + '<br>';
-avgpara.innerHTML += 'All time High: ' + alltimelow +' <br>';
+avgpara.innerHTML += 'All time Low: ' + alltimelow +' <br>';
 
 console.log('The average open was ' + (avgopen/count).toFixed(2));
 console.log('The average high was '+ (avghigh/count).toFixed(2));
