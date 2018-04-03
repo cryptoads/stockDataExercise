@@ -2,7 +2,6 @@ avgpara = document.getElementsByClassName('para')[0];
 allpara = document.getElementsByClassName('para')[1];
 
 var days = Object.keys(stocks);
-var dayinfo = Object.values(stocks);
 
 var alltimelow = 999999;
 var alltimehigh = 0;
@@ -33,8 +32,8 @@ days.forEach(function (day) {
 });
 
 
-days.forEach(function (day, key) {
-            alldays.push({"Day": days[key], 
+days.forEach(function (day) {
+            alldays.push({"Day": day, 
             "Open": stocks[day]["1. open"], 
             "close": stocks[day]["4. close"] });
   });
