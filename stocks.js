@@ -745,8 +745,8 @@ days.forEach(function (day, key) {
 
 function createDaily() {
     for(var i=99; i >= 0;i--){
-        // set colors background colors for bootstrap divs red or green on the open and close prices based on if the market opened 
-        // high/lower than the previous close or if the market closes higher/lower than the opening brint
+        // set background colors for bootstrap divs red or green on the open and close prices based on if the market opened 
+        // high/lower than the previous close or if the market closes higher/lower than the opening print
         if (stocks[days[i]]['1. open'] > close){
             var opencolor = 'bg-success';
         }else if (stocks[days[i]]['1. open'] < close) {
